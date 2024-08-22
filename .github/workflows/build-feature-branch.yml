@@ -1,19 +1,11 @@
 name: Build Feature Branch
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - on_http_error
 
 jobs:
-  check:
-    uses: ./.github/workflows/check.yml
-  lint:
-    needs: check
-    uses: ./.github/workflows/lint.yml
-    with:
-      build_type: Debug
   test:
-    needs: lint
     uses: ./.github/workflows/test.yml
   build:
     needs: test
